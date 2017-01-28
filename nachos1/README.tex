@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Alexander Powell
+% CSCI 544 - Operating Systems
+% Nachos Project 1 README
+% Due: October 2, 2016
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt]{article} %
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{psfrag}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage[makeroom]{cancel}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\points}[1]{{\it (#1 Points)}}
+\newcommand{\tpoints}[1]{{\bf #1 Total points.}}
+
+\title{CSCI 544 -- Operating Systems Nachos 1 \\
+Read Me \\
+{\large{\bf Due: October 2, 2016}}}
+\date{}
+\author{Aaron Wells, Cody Watson, Alexander Powell}
+
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item %1
+
+\textbf{Locks \& Condition Variables}
+
+\item %2
+
+\textbf{Producer/Consumer}
+
+\item %3
+
+\textbf{Elevator}
+
+\item %4
+
+\textbf{VA DOT Traffic Manager}
+
+If a car arrives at the bridge while traffic is currently moving in its direction of travel, but there is another car already waiting in the opposite direction, the new arrival will cross before the car waiting on the other side.  This is due to the condition inside the while loop in the ArriveBridge() method:
+
+\begin{verbatim}
+while (!((number_of_cars_on_bridge == 0) || 
+        ((number_of_cars_on_bridge < 3) && (current_direction == direc))))
+{
+    condition->Wait(lock);
+}
+\end{verbatim}
+
+If traffic is going in the new car's favor, the new car will always be able to cross the bridge before the one that is waiting.  The only except to this is when the bridge already has three cars moving across it.  In this case, the new car will hit the Wait(), and both the new car and the car that's already waiting in the opposite direction will be put to sleep.  This will continue until one of the cars crossing the bridge finally exits and sends a Broadcast(), which will wake up one of the two cars that are already waiting.  This is the only case where it's nondeterministic which car will get to cross the bridge first.  
+
+\end{enumerate}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
